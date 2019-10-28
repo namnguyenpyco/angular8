@@ -1,0 +1,6 @@
+<ul class="navigation">
+  <li><a [routerLink]="['']" routerLinkActive="active">Home</a></li>
+  <li><a [routerLink]="['list']" routerLinkActive="active">List</a></li>
+  <li><a *ngIf="!email" (click)="navigateTo()" routerLinkActive="active">Login</a><span *ngIf="email">{{email}}</span></li>
+  <li><a *ngIf="email" (click)="signout()" routerLinkActive="active">Logout</a></li>
+</ul>

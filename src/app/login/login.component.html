@@ -1,0 +1,22 @@
+
+<div class="form">
+  <h2>Login</h2>
+  <form [formGroup]="formGroup" novalidate>
+    <input type="email" formControlName="email" placeholder="Email">
+    <input type="password" formControlName="password" placeholder="Password">
+    <button type="button" class="signin btn" [disabled]="!formGroup.valid" [ngStyle]="{background: !formGroup.valid ? 'grey': 'blue'}" (click)="signin()">Sign in</button>
+  </form>
+  <p>If you don't have account, please <li><a [routerLink]="['/signup']">Register</a></li></p>
+  <p *ngIf="errorMessage" class="error">Email or password is invalid</p>
+</div>
+
+<div class="form formBinding">
+  <h2>FormBinding</h2>
+  <form [formGroup]="formBinding" novalidate>
+    <input type="text" formControlName="name" placeholder="name">
+    <input type="address" formControlName="address" placeholder="address">
+    <input type="number" formControlName="age" placeholder="age">
+    <input type="text" formControlName="phone" placeholder="phone">
+    <button type="button" class="signin btn" [disabled]="!formBinding.valid" [ngStyle]="{background: !formBinding.valid ? 'grey': 'blue'}" (click)="submit()">Submit</button>
+  </form>
+</div>

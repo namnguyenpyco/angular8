@@ -1,0 +1,30 @@
+<p>{{ stringBinding }}</p>
+<p>Button Click event: <button (click)="addWord()">Add</button></p>
+<p [hidden]="trueType">Add Property (property binding): {{ stringBinding }}</p>
+<p>Event binding: <button (click)="showText = !showText">Show/Hide</button> <span [hidden]="showText"> {{ text }}</span></p>
+<div><input (keyup)="showKey($event.target.value)"/> <p> Input binding: {{name}} </p></div>
+<div><input [(ngModel)]="textModelBinding" /> <p> 2 way binding: {{textModelBinding}} </p></div>
+
+
+
+<h2>Directives</h2>
+<p [ngStyle]="{color: trueType ? 'green': 'red'}">Add style html: {{ stringBinding }}</p>
+<div *ngIf="arrayString.length > 0,then hadData else noData"></div>
+<ul>
+  <li *ngFor="let item of arrayString, let i = index">{{i + 1}} - {{ item.name }}</li>
+</ul>
+<ng-template #hadData>List data</ng-template>
+<ng-template #noData>No data found</ng-template>
+
+
+<h2>Pipes</h2>
+<p>{{ date | date:"MM/dd/yyyy" }}</p>
+<p>{{ 234000 | number }}</p>
+<p>{{ 23 | percent: '1.0' }}</p>
+<p>{{ loginForm | json }}</p>
+<p>{{ 1000000 | thousandMillionPipe }}</p>
+
+
+{{valueExp}}
+<share-percent [value]="valueInit" (valueExport)="getValueExport($event)"></share-percent>
+<button type="button" (click)="changeNumber()">Button</button>

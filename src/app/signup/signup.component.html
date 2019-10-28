@@ -1,0 +1,16 @@
+<div class="form">
+  <h2>Create account</h2>
+  <form [formGroup]="formGroup" novalidate>
+    <input type="email" formControlName="email" placeholder="Email">
+    <span *ngIf="formGroup.get('email').hasError('email')" class='error'>Invalid email format. Please try again.</span>
+    <input type="password" formControlName="password" placeholder="Password">
+    <span
+    class="error"
+    *ngIf="formGroup.controls['password'].hasError('minlength')">
+    The password field must be at least 6 characters.
+  </span>
+    <button type="button" class="signin btn" [disabled]="!formGroup.valid" [ngStyle]="{background: !formGroup.valid ? 'grey': 'blue'}" (click)="signup()">Sign up</button>
+  </form>
+  <p><li><a [routerLink]="['/login']">Back to login</a></li></p>
+  <p *ngIf="errorMessage" class="error">Email or password is invalid</p>
+</div>
