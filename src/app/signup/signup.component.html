@@ -1,7 +1,7 @@
 <div class="form">
   <h2>Create account</h2>
   <form [formGroup]="formGroup" novalidate>
-    <input type="email" formControlName="email" placeholder="Email">
+    <input type="text" formControlName="email" placeholder="Email">
     <span *ngIf="formGroup.get('email').hasError('email')" class='error'>Invalid email format. Please try again.</span>
     <input type="password" formControlName="password" placeholder="Password">
     <span

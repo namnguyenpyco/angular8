@@ -14,9 +14,13 @@
   <h2>FormBinding</h2>
   <form [formGroup]="formBinding" novalidate>
     <input type="text" formControlName="name" placeholder="name">
-    <input type="address" formControlName="address" placeholder="address">
     <input type="number" formControlName="age" placeholder="age">
     <input type="text" formControlName="phone" placeholder="phone">
+
+    <div formGroupName="address">
+      <input type="text" formControlName="city" placeholder="city">
+      <input type="text" formControlName="country" placeholder="country">
+    </div>
     <button type="button" class="signin btn" [disabled]="!formBinding.valid" [ngStyle]="{background: !formBinding.valid ? 'grey': 'blue'}" (click)="submit()">Submit</button>
   </form>
 </div>

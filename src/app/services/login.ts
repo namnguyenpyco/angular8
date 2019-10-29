@@ -17,7 +17,7 @@ export class LoginService {
     ) { }
 
     public signin(login: Login): Observable<Login> {
-      const url = `${this.baseUrl}login`
+      const url = `${this.baseUrl}login`;
       return this
           .httpClient
           .post<Login>(url, login)
@@ -28,7 +28,7 @@ export class LoginService {
     }
 
     public signup(login: Login): Observable<Login> {
-      const url = `${this.baseUrl}signup`
+      const url = `${this.baseUrl}signup`;
       return this
           .httpClient
           .post<Login>(url, login)

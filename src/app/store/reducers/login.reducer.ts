@@ -1,13 +1,14 @@
+import { UserInfo } from './../../core/models/user-model';
 import { LoginActionTypes, LoginActions } from '../actions/login.action';
 
 
 export interface LoginState {
-  email: string;
+  user: UserInfo;
   loading: boolean;
 }
 
 export const initialState: LoginState = {
-  email: null,
+  user: null,
   loading: false,
 };
 
@@ -17,7 +18,6 @@ export function loginReducer(
 ): LoginState {
 
   switch (action.type) {
-
     case LoginActionTypes.Login: {
       return {
         ...state,
@@ -29,20 +29,18 @@ export function loginReducer(
       return {
         ...state,
         loading: false,
-        email: action.payload.email
+        user: action.payload
       };
     }
 
     case LoginActionTypes.Logout: {
       return {
         ...state,
-        loading: false,
-        email: null
+        user: null
       };
     }
 
     default:
       return state;
-
   }
 }

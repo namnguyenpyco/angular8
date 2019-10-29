@@ -20,9 +20,12 @@ export class LoginComponent implements OnInit {
   errorMessage: boolean;
   dataBinding = {
     name: 'Nam Nguyen',
-    address: '364 Cong Hoa',
     age: 30,
     phone: '0989667889',
+    address: {
+      city: 'Ho Chi Minh',
+      country: 'Vietnam',
+    }
   }
 
   public formGroup: FormGroup = this.fb.group({
@@ -30,11 +33,16 @@ export class LoginComponent implements OnInit {
     password: [null, [Validators.required]],
   })
 
+  public address: FormGroup = this.fb.group({
+    city: null,
+    country: null,
+  })
+
   public formBinding: FormGroup = this.fb.group({
     name: [null, [Validators.required]],
-    address: [null, [Validators.required]],
     age: null,
     phone: null,
+    address: this.address,
   })
 
   constructor(
@@ -50,18 +58,33 @@ export class LoginComponent implements OnInit {
       filter(x => !!x),
       takeUntil(this.completion$)
     )
-    .subscribe(user => this.router.navigate(['']));
+    .subscribe(user => {
+      if (user.status === 200) {
+        this.router.navigate(['']);
+      }
+    });
+
+    // disable/enable
+    this.address.controls.city.disable();
+
+    // set validation required field
+    this.formBinding.controls.name.setValidators([Validators.required]);
+    this.formBinding.controls.name.setValidators(null);
 
     this.formBinding.reset({...this.dataBinding});
+    const valueAddress = {city: 'Dong Nai', country: 'VietNam'};
+    this.address.reset({...valueAddress});
   }
 
   signin() {
     const formValues = this.formGroup.getRawValue();
+    console.log(formValues);
     this.store.dispatch( new LoginAction(formValues));
   }
 
   submit() {
     const formValues = this.formBinding.getRawValue();
+
     console.log(formValues);
   }
 
