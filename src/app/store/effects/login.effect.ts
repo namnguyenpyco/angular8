@@ -17,7 +17,7 @@ export class LoginEffects {
   ) { }
 
   @Effect()
-  getLetterOfCreditList$ = this.actions$.pipe(
+  getUserInfo$ = this.actions$.pipe(
     ofType(LoginActionTypes.Login),
     switchMap((action: LoginAction) => {
       const Login$ = this.loginService

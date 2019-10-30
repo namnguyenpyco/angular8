@@ -53,8 +53,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
   ) { }
 
-
-
   addWord(): void {
     this.stringBinding = 'Hello Angular 8';
     this.trueType = !this.trueType;
