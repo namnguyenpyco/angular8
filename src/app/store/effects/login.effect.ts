@@ -26,7 +26,6 @@ export class LoginEffects {
           map(x => new LoginSuccessAction(x)),
           catchError(() => of(new LoginFaildAction()))
         );
-
       return Login$;
     })
   );

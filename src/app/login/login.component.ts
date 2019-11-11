@@ -7,6 +7,7 @@ import { Store, select } from '@ngrx/store';
 import { LoginAction } from '../store/actions/login.action';
 import { selectUser } from '../store/selectors/login.selector';
 import { Subject } from 'rxjs';
+import { UserInfo } from '../core/models/user-model';
 
 @Component({
   selector: 'app-login',
@@ -58,7 +59,7 @@ export class LoginComponent implements OnInit {
       filter(x => !!x),
       takeUntil(this.completion$)
     )
-    .subscribe(user => {
+    .subscribe( (user: UserInfo) => {
       if (user.status === 200) {
         this.router.navigate(['']);
       }
@@ -84,8 +85,6 @@ export class LoginComponent implements OnInit {
 
   submit() {
     const formValues = this.formBinding.getRawValue();
-
     console.log(formValues);
   }
-
 }

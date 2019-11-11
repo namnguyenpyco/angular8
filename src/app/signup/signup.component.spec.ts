@@ -1,23 +1,28 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoginComponent } from './login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LoginService } from '../services/login';
 import { provideMockStore } from '@ngrx/store/testing';
+import { SignUpComponent } from './signup.component';
+import { of } from 'rxjs';
 
 const initialState = {};
 
-describe('Component: Login', () => { // TODO: Fix this test!
+class MockLoginService {
+  signup = () => of();
+}
 
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+describe('Component: Signup', () => {
+
+  let component: SignUpComponent;
+  let fixture: ComponentFixture<SignUpComponent>;
 
   beforeEach(() => {
 
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, FormsModule, RouterTestingModule],
-      declarations: [LoginComponent],
+      declarations: [SignUpComponent],
       providers: [
         {
           provide: LoginService, useValue: {
@@ -27,11 +32,15 @@ describe('Component: Login', () => { // TODO: Fix this test!
           }
         },
         provideMockStore({initialState}),
+        {
+          provide: LoginService,
+          useClass: MockLoginService,
+        },
       ]
     });
 
     // create component and test fixture
-    fixture = TestBed.createComponent(LoginComponent);
+    fixture = TestBed.createComponent(SignUpComponent);
 
     // get test component from the fixture
     component = fixture.componentInstance;

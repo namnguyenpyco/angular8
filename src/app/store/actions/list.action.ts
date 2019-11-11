@@ -3,28 +3,28 @@
 import { Action } from '@ngrx/store';
 
 export enum ListActionTypes {
-  GetList      = '[List] login an account',
-  GetListSuccess     = '[List] login success',
-  GetListFaild = '[List] login faild',
+  GetListUser      = '[List] get list user',
+  GetListUserSuccess     = '[List] get list user success',
+  GetListUserFaild = '[List] get list faild',
 }
 
-export class LoginAction implements Action {
-  readonly type = ListActionTypes.GetList;
-  constructor(public payload: {name: string, password: string}) { }
+export class GetListUserAction implements Action {
+  readonly type = ListActionTypes.GetListUser;
+  constructor() { }
 }
 
-export class LoginSuccessAction implements Action {
-  readonly type = ListActionTypes.GetListSuccess;
+export class GetListUserSuccessAction implements Action {
+  readonly type = ListActionTypes.GetListUserSuccess;
   constructor(public payload) { }
 }
 
-export class LoginFaildAction implements Action {
-  readonly type = ListActionTypes.GetListFaild;
+export class GetListUserFaildAction implements Action {
+  readonly type = ListActionTypes.GetListUserFaild;
   constructor() { }
 }
 
 export type ListActions =
-  | LoginAction
-  | LoginSuccessAction
-  | LoginFaildAction
+  | GetListUserAction
+  | GetListUserSuccessAction
+  | GetListUserFaildAction
 ;

@@ -19,6 +19,7 @@ import { LoginEffects } from './store/effects/login.effect';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { ListEffects } from './store/effects/list.effect';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     ItemComponent,
     SignUpComponent,
   ],
+  exports: [
+    NavComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -38,8 +42,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     FormsModule,
     SharedModule,
     HttpClientModule,
+
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([LoginEffects]),
+    EffectsModule.forRoot([LoginEffects, ListEffects]),
+
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: false,
@@ -49,6 +55,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
         persist: true
       }
     })
+
   ],
   providers: [],
   bootstrap: [AppComponent]

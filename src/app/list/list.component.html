@@ -1,1 +1,9 @@
-<p>list works!</p>
+<p *ngIf="(loading$ | async)" style="color: red; height: 100px; display: block">Loading...</p>
+
+<ul *ngIf="!(loading$ | async)">
+  <li *ngFor="let user of (selectListUser$ | async), let i = index">{{i + 1}} - {{ user.email }}</li>
+</ul>
+
+<ul>
+  <li *ngFor="let user of list, let i = index">{{i + 1}} - {{ user.email }}</li>
+</ul>
